@@ -1,0 +1,52 @@
+
+
+<div class="container mt-5">
+    <table mat-table [dataSource]="myBookingDetails" class="mat-elevation-z8">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef>Tên</th>
+            <td mat-cell *matCellDef="let element"> {{element.fullNameBooking}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Addrress">
+            <th mat-header-cell *matHeaderCellDef>Địa chi</th>
+            <td mat-cell *matCellDef="let element"> {{element.fullBooking}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Contact">
+            <th mat-header-cell *matHeaderCellDef>Số điện thoại</th>
+            <td mat-cell *matCellDef="let element"> {{element.fullBoocontactNumberBooking}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let element"> {{element.amout}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Start date">
+            <th mat-header-cell *matHeaderCellDef>Ngày bắt đầu</th>
+            <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="End date">
+            <th mat-header-cell *matHeaderCellDef>Ngày trả</th>
+            <td mat-cell *matCellDef="let element"> {{element.endDate}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+

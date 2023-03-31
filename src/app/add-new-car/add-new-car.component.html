@@ -1,0 +1,77 @@
+<div class="container mt-5">
+    <div class="card p-2">
+        <div class="row">
+            <div class="col-6">
+                <form #carForm="ngForm" (ngSubmit)="addCar(carForm)">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Số chỗ</mat-label>
+                        <input matInput placeholder="Số chỗ" [(ngModel)]="car.make" name="make">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Tên xe</mat-label>
+                        <input matInput placeholder="Tên xe" [(ngModel)]="car.model" name="model">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Năm</mat-label>
+                        <input matInput placeholder="Năm" [(ngModel)]="car.year" name="year">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Biển số</mat-label>
+                        <input matInput placeholder="Tranmistion" [(ngModel)]="car.transmission" name="transmission">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Loại xe</mat-label>
+                        <input matInput placeholder="Loại xe" [(ngModel)]="car.fuelType" name="fuelType">
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Mô tả</mat-label>
+                        <input matInput placeholder="Mô tả" [(ngModel)]="car.description" name="description">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Giá thuê/ngày</mat-label>
+                        <input matInput placeholder="Giá thuê/ngày" [(ngModel)]="car.dailyRentalPrice"
+                            name="dailyRentalPrice">
+                    </mat-form-field>
+                    <div align="end">
+                        <button mat-stroked-button class="warn" style="margin-right: 3px;" color="warn">Hủy bỏ</button>
+                        <button mat-stroked-button color="primary" type="submit" *ngIf="isNewCar">Thêm</button>
+                        <button mat-stroked-button color="primary" type="submit" *ngIf="!isNewCar">Sửa xe</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-6">
+                <div>
+                    <input type="file" 
+                                multiple value="select" 
+                                #selectFile 
+                                (change)="onFileSelected($event)">
+                </div>
+                <div class="mt-5">
+                    <div class="row">
+                        <mat-grid-list cols="4" rowHeight="1:1">
+                            <mat-grid-tile *ngFor="let file of car.carImages; let i = index">
+                                <div style="position: relative;">
+                                    <span class="btn-remove-image" (click)="removeImages(i)">X</span>
+                                    <img [src]="file.url" width="100px" height="100px">
+                                </div>  
+                            </mat-grid-tile>
+                          </mat-grid-list>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

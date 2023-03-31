@@ -1,0 +1,69 @@
+
+<div class="container mt-5">
+    <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Nhập thông tin thuê cần tìm</mat-label>
+        <input matInput
+              #searchKeyWord
+              placeholder="Nhập thông tin thuê cần tìm"
+              id="searchKey"
+              name="searchKey">
+      </mat-form-field>
+
+    <mat-button-toggle-group aria-label="Font Style" class="">
+        <mat-button-toggle value="All" (click)="getAllBookingDetailsForAdmin('All')">Tất cả</mat-button-toggle>
+        <mat-button-toggle value="Đang thuê" (click)="getAllBookingDetailsForAdmin('Đang thuê')">Đang thuê</mat-button-toggle>
+        <mat-button-toggle value="Đã trả" (click)="getAllBookingDetailsForAdmin('Đã trả')">Đã trả</mat-button-toggle>
+      </mat-button-toggle-group>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-3">
+        <!-- Id Column -->
+        <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Car name Column -->
+        <ng-container matColumnDef="Car name">
+            <th mat-header-cell *matHeaderCellDef>Tên xe</th>
+            <td mat-cell *matCellDef="let element"> {{element.car.model}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Tên người dùng </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef>Địa chỉ</th>
+            <td mat-cell *matCellDef="let element"> {{element.fullBooking}} </td>
+        </ng-container>
+
+        <!-- Contact Column -->
+        <ng-container matColumnDef="Contact">
+            <th mat-header-cell *matHeaderCellDef>Số điện thoại</th>
+            <td mat-cell *matCellDef="let element"> {{element.contactNumberBooking}} </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef>Trạng thái</th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+        
+        <!-- Status Column -->
+        <ng-container matColumnDef="Action">
+            <th mat-header-cell *matHeaderCellDef>Hoạt động</th>
+            <td mat-cell *matCellDef="let element"> 
+                <button *ngIf="element.status == 'Đang thuê'" mat-raised-button color="primary" (click)="markAsDelivered(element.id)">Kích hoạt đã trả</button>
+                <button mat-icon-button color="warn">
+                    <mat-icon> delete </mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="login-page">
+    <div class="form">
+        <form class="register-form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()"
+            #f="ngForm" novalidate>
+            <input type="text" placeholder="Tên người dùng" type="text" name="username" [(ngModel)]="form.username"
+                required minlength="3" maxlength="20" #username="ngModel" />
+            <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                <div *ngIf="username.errors['required']">Tên người dùng là bắt buộc</div>
+                <div *ngIf="username.errors['minlength']">
+                    Tên người dùng phải có ít nhất 3 ký tự
+                </div>
+                <div *ngIf="username.errors['maxlength']">
+                    Tên người dùng nhiều nhất là 20 ký tự
+                </div>
+            </div>
+            <input type="password" name="password" [(ngModel)]="form.password" required minlength="6"
+                #password="ngModel" placeholder="Mật khẩu" />
+            <!-- <a (click)="onClick()">
+                <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
+                <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
+            </a> -->
+            <div class="alert-danger" *ngIf="password.errors && f.submitted">
+                <div *ngIf="password.errors['required']">Mật khẩu la bắt buộc</div>
+                <div *ngIf="password.errors['minlength']">
+                    Mật khẩu phải chứ ít nhất 8 ký tự
+                </div>
+            </div>
+            <input type="email" name="email" [(ngModel)]="form.email" required email #email="ngModel"
+                placeholder="Email" />
+            <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                <div *ngIf="email.errors['required']">Email là bắt buộc</div>
+                <div *ngIf="email.errors['email']">
+                    Email phải có địa chỉ hợp lệ
+                </div>
+            </div>
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Đăng ký thất bại!<br />{{ errorMessage }}
+            </div>
+            <button>Đăng ký</button>
+            <p class="message">Bạn đã có tài khoản? <a href="login">Đăng nhập</a></p>
+        </form>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+            Đăng ký thành công!
+        </div>
+    </div>
+</div>

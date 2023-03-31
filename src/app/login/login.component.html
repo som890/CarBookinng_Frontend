@@ -1,0 +1,27 @@
+
+<div class="login-page">
+  <div class="form">
+      <form class="login-form" *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+          novalidate>
+          <input type="text" name="username" [(ngModel)]="form.username" required #username="ngModel"
+              placeholder="Tên người dùng" />
+          <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted">
+              Tên người dùng là bắt buộc!
+          </div>
+          <input type="password" name="password" [(ngModel)]="form.password" required minlength="6"
+              #password="ngModel" placeholder="Mật khẩu" />
+          <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+              <div *ngIf="password.errors['required']">Mật khẩu là bắt buộc</div>
+              <div *ngIf="password.errors['minlength']">
+                  Mật khẩu phải có ít nhất 6 ký tự
+              </div>
+          </div>
+          <button >Đăng nhập</button>
+          <p class="message">Bạn chưa có tài khoản? <a href="/register">Đăng ký</a></p>
+          <div class="form-group">
+              <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed">
+                  Đăng nhập thất bại: {{ errorMessage }}
+              </div>
+          </div>
+      </form>
+  </div>        

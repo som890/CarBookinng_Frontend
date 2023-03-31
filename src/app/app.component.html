@@ -1,0 +1,62 @@
+
+
+<div id="app">
+  <nav class="navbar navbar-expand" style=" background:  #009999;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" style="color:white">
+       <img src="../assets/logo2.png" width="30px" height="30px"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav" >
+        <ul class="navbar-nav mr-auto" routerLinkActive="active">
+          <li class="nav-item">
+            <a href="/home" class="nav-link" routerLink="home" style="color:white">Trang chủ </a>
+          </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/admin" class="nav-link" routerLink="admin" style="color:white">Trang quản trị</a>
+          </li> 
+          <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/addCar" class="nav-link" routerLink="/addcar" style="color:white"> Thêm xe</a>
+            </li>
+    
+            <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/showcar" class="nav-link" routerLink="/showcar" style="color:white"> Quản lý xe</a>
+            </li>
+            <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/bookingInformation" class="nav-link" routerLink="/bookingInformation" style="color:white">Quản lý thuê</a>
+          </li>
+          <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/bookingInformation" class="nav-link" routerLink="/bookingInformation" style="color:white">Quản lý thanh toán</a>
+          </li>
+          <li class="nav-item">
+            <a href="/myBooking" class="nav-link" *ngIf="isLoggedIn" routerLink="/myBooking" style="color:white">Người dùng</a>
+          </li>
+        </ul>
+    
+        <ul class="navbar-nav ms-auto" *ngIf="!isLoggedIn">
+          <li class="nav-item">
+            <a href="/register" class="nav-link" routerLink="register" style="color:white">Đăng ký</a>
+          </li>
+          <li class="nav-item">
+            <a href="/login" class="nav-link" routerLink="login" style="color:white">Đăng nhập</a>
+          </li>
+        </ul>
+    
+        <ul class="navbar-nav ms-auto" *ngIf="isLoggedIn">
+          <li class="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile" style="color:white">{{ username }}</a>
+          </li>
+          <li class="nav-item">
+            <a href class="nav-link" (click)="logout()" style="color:white">Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div> 
